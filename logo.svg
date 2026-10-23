@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 16 16" shape-rendering="crispEdges">
+  <!-- kaset game piksel: badan kuning, label layar, takik konektor -->
+  <path fill="#ffc94a" d="M2 1h10l2 2v12H2z"/>
+  <path fill="#2a1d00" d="M4 3h8v6H4z"/>
+  <path fill="#3fc1c9" d="M5 4h6v4H5z"/>
+  <path fill="#ff6b57" d="M7 5h1v1h1v1H8v1H7z"/>
+  <path fill="#2a1d00" d="M4 11h1v3H4zm2 0h1v3H6zm2 0h1v3H8zm2 0h1v3h-1z"/>
+</svg>

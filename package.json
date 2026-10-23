@@ -1,0 +1,86 @@
+{
+  "name": "ruang-main",
+  "version": "0.1.2",
+  "description": "Launcher game jadul: Arcade/Neo Geo, NES, SNES, Game Boy, GBA, PS1",
+  "main": "main.js",
+  "scripts": {
+    "setup": "node scripts/setup.js",
+    "postinstall": "node scripts/setup.js",
+    "start": "electron .",
+    "build:win": "node scripts/setup.js && electron-builder --win --x64",
+    "build:linux": "node scripts/setup.js && electron-builder --linux"
+  },
+  "keywords": [],
+  "author": "@SuS_X_x",
+  "license": "GPL-3.0-or-later",
+  "dependencies": {
+    "7zip-bin": "^5.2.0"
+  },
+  "devDependencies": {
+    "@emulatorjs/core-fbneo": "4.2.3",
+    "@emulatorjs/core-fceumm": "4.2.3",
+    "@emulatorjs/core-gambatte": "4.2.3",
+    "@emulatorjs/core-mgba": "4.2.3",
+    "@emulatorjs/core-pcsx_rearmed": "4.2.3",
+    "@emulatorjs/core-snes9x": "4.2.3",
+    "@emulatorjs/emulatorjs": "4.2.3",
+    "@fontsource/atkinson-hyperlegible": "^5.3.0",
+    "@fontsource/pixelify-sans": "^5.3.0",
+    "electron": "^45.0.0",
+    "electron-builder": "^26.15.3"
+  },
+  "productName": "Ruang Main",
+  "build": {
+    "appId": "id.sus.ruangmain",
+    "productName": "Ruang Main",
+    "directories": {
+      "output": "dist"
+    },
+    "files": [
+      "main.js",
+      "preload.js",
+      "lib/**",
+      "app/**",
+      "build/icon.png",
+      "package.json",
+      "!**/*.map",
+      "!lib/smoke.js"
+    ],
+    "asar": true,
+    "win": {
+      "target": [
+        {
+          "target": "zip",
+          "arch": [
+            "x64"
+          ]
+        }
+      ],
+      "icon": "build/icon.ico",
+      "signAndEditExecutable": false,
+      "files": [
+        "!node_modules/7zip-bin/mac/**",
+        "!node_modules/7zip-bin/linux/**",
+        "!node_modules/7zip-bin/win/ia32/**",
+        "!node_modules/7zip-bin/win/arm64/**"
+      ]
+    },
+    "nsis": {
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "artifactName": "RuangMain-Setup-${version}.${ext}",
+      "shortcutName": "Ruang Main"
+    },
+    "linux": {
+      "target": [
+        "AppImage"
+      ],
+      "category": "Game",
+      "icon": "build/icon.png"
+    },
+    "artifactName": "RuangMain-${version}-${os}-${arch}.${ext}",
+    "asarUnpack": [
+      "node_modules/7zip-bin/**"
+    ]
+  }
+}

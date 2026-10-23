@@ -1,0 +1,111 @@
+* { box-sizing: border-box; }
+html, body { height: 100%; margin: 0; }
+body { background: #000; color: var(--ink); font: 15px/1.5 var(--font-body); overflow: hidden; }
+button { font: inherit; color: inherit; cursor: pointer; }
+svg { width: 20px; height: 20px; fill: currentColor; }
+:focus-visible { outline: 3px solid var(--marquee); outline-offset: 2px; }
+[hidden] { display: none !important; }
+.muted { color: var(--muted); }
+h1, h2, h3 { font-family: var(--font-display); font-weight: 600; margin: 0; }
+
+#game { position: fixed; inset: 0; }
+
+.btn {
+  display: inline-flex; align-items: center; gap: 8px;
+  padding: 10px 18px; border-radius: 10px;
+  background: var(--panel-hi); border: 1px solid var(--line); font-weight: 700;
+}
+.btn:hover { background: var(--line); }
+
+.sys-tag { display: inline-block; padding: 1px 8px; border-radius: 6px; font: 400 13px/1.6 var(--font-display); color: #1b1830; background: var(--c, var(--muted)); }
+.sys-arcade { --c: var(--sys-arcade); } .sys-nes { --c: var(--sys-nes); } .sys-snes { --c: var(--sys-snes); }
+.sys-gb { --c: var(--sys-gb); } .sys-gba { --c: var(--sys-gba); } .sys-psx { --c: var(--sys-psx); }
+
+/* ---------- Layar memuat ---------- */
+.loading {
+  position: fixed; inset: 0; z-index: 40;
+  display: grid; place-items: center;
+  background: var(--room);
+}
+.load-box { text-align: center; max-width: 460px; padding: 24px; }
+.load-box h1 { font-size: 28px; margin: 18px 0 6px; }
+.load-box p { margin: 0 0 22px; min-height: 1.5em; }
+.spinner {
+  width: 44px; height: 44px; margin: 0 auto;
+  background: var(--marquee);
+  animation: blink 1s steps(2, end) infinite;
+  clip-path: polygon(0 0, 100% 50%, 0 100%);
+}
+@keyframes blink { 50% { opacity: .25; } }
+@media (prefers-reduced-motion: reduce) { .spinner { animation: none; } }
+.loading.error .spinner { background: var(--danger); clip-path: none; border-radius: 4px; animation: none; }
+
+/* ---------- Petunjuk menu ---------- */
+.menu-hint {
+  position: fixed; top: 14px; left: 14px; z-index: 30;
+  display: flex; align-items: center; gap: 8px;
+  padding: 7px 12px; border-radius: 10px;
+  background: rgba(21, 18, 41, .82); border: 1px solid var(--line);
+  font-size: 14px; opacity: 0; transition: opacity .25s; pointer-events: none;
+}
+.menu-hint.show { opacity: 1; pointer-events: auto; }
+kbd { font: 12px var(--font-body); padding: 0 5px; border-radius: 4px; border: 1px solid var(--line); color: var(--muted); }
+
+/* ---------- Menu jeda ---------- */
+.menu { position: fixed; inset: 0; z-index: 35; display: grid; }
+.menu-bg {
+  position: absolute; inset: 0;
+  background-size: cover; background-position: center;
+  filter: blur(18px) brightness(.35) saturate(1.2);
+  transform: scale(1.1);
+  image-rendering: pixelated;
+}
+.menu::before { content: ""; position: absolute; inset: 0; background: rgba(21, 18, 41, .55); }
+.menu-inner {
+  position: relative; display: flex; gap: 48px;
+  padding: 7vh 6vw; align-items: flex-start; overflow-y: auto;
+}
+.menu-col { width: 320px; flex: none; }
+.menu-head { margin-bottom: 26px; }
+.menu-head h2 { font-size: 30px; line-height: 1.1; margin: 10px 0 6px; }
+.menu-list { display: grid; gap: 4px; }
+.menu-list button {
+  text-align: left; padding: 12px 16px; border-radius: 10px;
+  background: none; border: 0; font-size: 18px;
+  font-family: var(--font-display);
+}
+.menu-list button:hover, .menu-list button:focus-visible, .menu-list button.on {
+  background: var(--marquee); color: var(--marquee-ink); outline: none;
+}
+.menu-list .exit { margin-top: 14px; color: var(--muted); }
+.keys { font-size: 13px; margin-top: 22px; }
+
+.menu-slots { flex: 1; max-width: 760px; }
+.menu-slots h3 { font-size: 22px; margin: 6px 0 16px; }
+.slot-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(220px, 1fr)); gap: 14px; }
+.slot {
+  display: grid; gap: 6px; padding: 10px; text-align: left;
+  background: rgba(39, 35, 74, .9); border: 1px solid var(--line); border-radius: 12px;
+}
+.slot:hover, .slot:focus-visible { border-color: var(--marquee); outline: none; box-shadow: 0 0 0 2px var(--marquee); }
+.slot .shot { aspect-ratio: 4 / 3; border-radius: 6px; background: #000; overflow: hidden; display: grid; place-items: center; color: var(--muted); font-size: 14px; }
+.slot .shot img { width: 100%; height: 100%; object-fit: contain; image-rendering: pixelated; }
+.slot .nm { font-weight: 700; }
+.slot .tm { color: var(--muted); font-size: 13px; margin-top: -6px; }
+.slot[disabled] { opacity: .45; cursor: default; box-shadow: none; border-color: var(--line); }
+
+.toast {
+  position: fixed; left: 50%; top: 22px; transform: translate(-50%, -16px);
+  background: var(--ink); color: var(--room-deep); font-weight: 700;
+  padding: 9px 18px; border-radius: 10px; opacity: 0; pointer-events: none;
+  transition: opacity .18s, transform .18s; z-index: 50;
+}
+.toast.show { opacity: 1; transform: translate(-50%, 0); }
+
+/* Warna bar bawaan emulator disesuaikan */
+#game .ejs_menu_bar { background: rgba(21, 18, 41, .92) !important; }
+
+.slot.gfx { padding: 16px 18px; gap: 8px; }
+.slot.gfx .nm { font-family: var(--font-display); font-size: 18px; }
+.slot.gfx .tm { margin-top: 0; font-size: 14px; }
+.slot.gfx.current { border-color: var(--marquee); }

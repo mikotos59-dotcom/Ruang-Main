@@ -1,0 +1,27 @@
+@font-face { font-family: "Pixelify Sans"; font-weight: 400; font-display: swap; src: url("fonts/pixelify-sans-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Pixelify Sans"; font-weight: 600; font-display: swap; src: url("fonts/pixelify-sans-latin-600-normal.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 400; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-400-normal.woff2") format("woff2"); }
+@font-face { font-family: "Atkinson Hyperlegible"; font-weight: 700; font-display: swap; src: url("fonts/atkinson-hyperlegible-latin-700-normal.woff2") format("woff2"); }
+
+:root {
+  --room: #1d1a33;
+  --room-deep: #151229;
+  --panel: #27234a;
+  --panel-hi: #322d5c;
+  --line: #3d3770;
+  --ink: #f3eef9;
+  --muted: #a8a1c7;
+  --marquee: #ffc94a;
+  --marquee-ink: #2a1d00;
+  --danger: #ff7a7a;
+
+  --sys-arcade: #ff6b57;
+  --sys-nes: #c9c3d6;
+  --sys-snes: #9b7bff;
+  --sys-gb: #9cc95a;
+  --sys-gba: #6f8cff;
+  --sys-psx: #3fc1c9;
+
+  --font-display: "Pixelify Sans", "Atkinson Hyperlegible", system-ui, sans-serif;
+  --font-body: "Atkinson Hyperlegible", system-ui, sans-serif;
+}

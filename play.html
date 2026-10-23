@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="id">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Ruang Main</title>
+<link rel="stylesheet" href="rm://app/app/fonts.css">
+<link rel="stylesheet" href="play.css">
+</head>
+<body>
+<div id="game"></div>
+
+<div id="loading" class="loading">
+  <div class="load-box">
+    <div class="spinner" aria-hidden="true"></div>
+    <h1 id="loadTitle">Menyiapkan game</h1>
+    <p id="loadHint" class="muted"></p>
+    <button class="btn" id="loadBack">Kembali ke pustaka</button>
+  </div>
+</div>
+
+<button id="menuHint" class="menu-hint" aria-label="Buka menu (Esc)">
+  <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M4 6h16v2H4zm0 5h16v2H4zm0 5h16v2H4z"/></svg>Menu <kbd>Esc</kbd>
+</button>
+
+<div id="menu" class="menu" hidden>
+  <div class="menu-bg" id="menuBg"></div>
+  <div class="menu-inner">
+    <div class="menu-col">
+      <div class="menu-head">
+        <span id="menuSys" class="sys-tag"></span>
+        <h2 id="menuTitle"></h2>
+        <p class="muted" id="menuTime"></p>
+      </div>
+      <div class="menu-list" role="menu">
+        <button role="menuitem" data-m="resume">Lanjutkan main</button>
+        <button role="menuitem" data-m="save">Simpan ke slot</button>
+        <button role="menuitem" data-m="load">Muat dari slot</button>
+        <button role="menuitem" data-m="graphics">Mode grafis: Asli</button>
+        <button role="menuitem" data-m="shot">Foto layar</button>
+        <button role="menuitem" data-m="restart">Mulai ulang game</button>
+        <button role="menuitem" data-m="exit" class="exit">Simpan &amp; kembali ke pustaka</button>
+      </div>
+      <p class="keys muted">F5 simpan cepat · F9 muat cepat · F12 foto · stik: Select + Start</p>
+    </div>
+    <div class="menu-slots" id="slotPanel" hidden>
+      <h3 id="slotHeading"></h3>
+      <div class="slot-grid" id="slotGrid"></div>
+    </div>
+  </div>
+</div>
+
+<div id="toast" class="toast" role="status" aria-live="polite"></div>
+
+<script src="rm://app/app/common.js"></script>
+<script src="play.js"></script>
+</body>
+</html>
